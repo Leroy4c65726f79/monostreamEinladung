@@ -1,37 +1,32 @@
 <?php
-namespace autodo\interfaces\writer;
 
-/**
- *  Writes CSV Data to File
- */
-class wfile
-{
+class wfile {
     public $filename="../Data/names.txt";
     private $filehandle;
-    private $counter = 0;
-
-    public function init() {
-        $this->filehandle = fopen( $this->filename, "w" );
-    }
 
     public function process($data) {
+        $obuffer = file_get_contents($this->filename);
+        $buffer = $obuffer . $data;
+        file_put_contents($this->filename, $buffer);
 
-        $tmp = $data->getCSV();
-        fwrite( $this->filehandle, "$tmp\n" );
-        $this->counter++;
-    }
-
-    public function finish() {
-        fclose ($this->filehandle);
-        echo "\n".$this->counter." sets written to CSV\n";
     }
 }
 
+
+$ip = $_SERVER['REMOTE_ADDR'];
+$name = preg_replace('/[^A-Za-z0-9\-]/', '', $_POST["m_f_name"]);
+$ammount = preg_replace('/[^A-Za-z0-9\-]/', '', $_POST["m_f_anual"]);
+
+
+
+
+
+$buffer = " ". date('d-m-Y G-i-s') . ":;:".$name.":;:".$ammount.":;:".$ip.":%;%:\n";
+
 $write = new wfile();
-$write->getCSV('hay');
+$write->process($buffer);
 
-
-
+header('Location: ../angemeldet');
 
 
 
