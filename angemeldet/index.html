@@ -71,6 +71,34 @@
       text-align: center;
       margin-top: 65vh;
     }
+    .logo {
+      width: 20vw;
+      margin-left: calc(50% - 10vw);
+      margin-top: calc(30% - 10vh);
+      height: auto;
+      z-index: 9099;
+      animation-name: le;
+      animation-duration: 1s;
+      animation-delay: 6s;
+      position: absolute;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+  @media only screen and (max-width: 708px) {
+    .logo {
+      width: 50vw;
+      margin-left: calc(50% - 25vw);
+      margin-top: calc(30% - 10vh);
+    }
+  }
+    @keyframes le {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+    }
   </style>
 </head>
 
@@ -78,6 +106,8 @@
   <div class="vd">
     Wir freuen uns auf dich!
   </div>
+
+  <img class="logo" src="logo.jpg" alt="Logo">
   <!-- build:scripto -->
   <script>
     ! function(t, e) {
@@ -9182,13 +9212,16 @@
     var params = {
       container: document.getElementById('lottie'),
       renderer: 'svg',
-      loop: true,
+      loop: false,
       autoplay: true,
       animationData: animationData
     };
     var anim;
     anim = lottie.loadAnimation(params);
   </script>
+
+
+
 </body>
 
 </html>
